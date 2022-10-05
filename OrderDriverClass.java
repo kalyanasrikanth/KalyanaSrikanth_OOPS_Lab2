@@ -23,7 +23,7 @@ public class OrderDriverClass {
 				}
 			}else if(optionsMenuSelected == 3) {
 				if(orderList.size()>0) {
-					if(orderList.peek().getKitchenStatus() != KitchenStatus.COMPLETED) {
+					if(orderList.peek().getKitchenStatus() == KitchenStatus.COMPLETED) {
 						Payment.payment(orderList.peek());
 						orderList.remove();
 					}else {
