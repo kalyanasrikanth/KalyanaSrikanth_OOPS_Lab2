@@ -27,7 +27,7 @@ public class OrderDriverClass {
 						Payment.payment(orderList.peek());
 						orderList.remove();
 					}else {
-						System.out.println("Order not ready yet");
+						System.out.println("Order number " + orderList.peek().getTokenNumber() +" is not ready yet");
 					}
 				}else {
 					System.out.println("No orders in queue currently.");
@@ -39,11 +39,7 @@ public class OrderDriverClass {
 			}
 		}while(optionsMenuSelected != 4);
 		
-		System.out.println("Orders in queue: "+orderList.size());
-		orderList.remove();
-		System.out.println("Orders in queue after removal: "+orderList.size());
-		System.out.println(orderList.peek().toString());
-		
+		System.out.println("Thanks You!!!");
 	}
 	
 	public static int foodMenu(Scanner keyboard) {
@@ -83,16 +79,18 @@ public class OrderDriverClass {
 				if(orderList.peek().getKitchenStatus() == KitchenStatus.InProgress) {
 					KitchenStatusUpdate.statusUpdate(orderList.peek(), KitchenStatus.COMPLETED);
 				}
-			}else {
+			}else if(kitchenUpdateMenuSelected != 3) {
 				System.out.println("Invalid selection. Please try again.");
+			}else {
+				break;
 			}
 		}while((kitchenUpdateMenuSelected<0)||(kitchenUpdateMenuSelected>2));
 		
-		System.out.println(orderList.peek().toString());
+		System.out.println("Current Order in Queue: \n" +orderList.peek().toString());
 	}
 	
 	public static int optionsMenu(Scanner keyboard) {
-		System.out.println("List of Options:");
+		System.out.println("\n List of Options:");
 		System.out.println("1. Food Menu");
 		System.out.println("2. Kitchen Status");
 		System.out.println("3. Payment");
